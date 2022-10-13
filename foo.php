@@ -7,9 +7,12 @@ $get_id = $_GET['id'];
 
 //var_dump($_REQUEST);
     //die();
+    
 //Create user
 if(isset($_POST['add'])){
-    $sql = ("INSERT INTO users_1 (name, email) VALUES ()");
+    
+    //$sql = ("INSERT INTO users_1 (name, email) VALUES (?,?)");
+    $sql = ("INSERT INTO `users_1`(`name`, `email`) VALUES (?,?)");
     $query = $pdo->prepare($sql);
     $query->execute([$name, $email]);
     if($query){

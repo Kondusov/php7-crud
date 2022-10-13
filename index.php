@@ -68,7 +68,7 @@
   <body class="py-4">
 <main>
     <div class="container">
-    <h1>Bootstrap grid examples</h1>
+    <h1>Users list</h1>
     <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#create">
         Create user
