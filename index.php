@@ -91,7 +91,7 @@
           <td><?php echo $res->email ?></td>
           <td>
             <a href="?id=<?php echo $res->id ?>" class="btn-btn-success" data-bs-toggle="modal" data-bs-target="#edit<?php echo $res->id ?>" >Edit</a>
-            <a href="" class="btn-btn-success">Delete</a>
+            <a href="?id=<?php echo $res->id ?>" class="btn-btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?php echo $res->id ?>">Delete</a>
           </td>
         </tr>
         <!-- Modal Edit -->
@@ -123,6 +123,32 @@
           </div>
         </div>
         <!-- end Modal Edit -->
+        <!-- Modal Delete -->
+        <div class="modal fade" id="delete<?php echo $res->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete post # <?php echo $res->id ?></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="?id=<?php echo $res->id ?>">
+                    <div class="form-group">
+                        <small class="b-2">Name <?php echo $res->name ?></small>
+                    </div>
+                    <div class="form-group">
+                        <small class="b">Email <?php echo $res->email ?></small>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger" name="delete">Delete</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end Modal Delete -->
         <?php } ?>
       </tbody>
     </table>

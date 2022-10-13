@@ -34,3 +34,13 @@ if(isset($_POST['edit'])){
         header("Location: ". $_SERVER['HTTP_REFERER']);
     }
 }
+
+//Delete user
+if(isset($_POST['delete'])){
+    $sql = ("DELETE FROM `users_1` WHERE ID=?");
+    $query = $pdo->prepare($sql);
+    $query->execute([$get_id]);
+    if($query){
+        header("Location: ". $_SERVER['HTTP_REFERER']);
+    }
+}
