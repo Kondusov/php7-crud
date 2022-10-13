@@ -7,7 +7,7 @@ $get_id = $_GET['id'];
 
 //var_dump($_REQUEST);
     //die();
-    
+
 //Create user
 if(isset($_POST['add'])){
     
@@ -19,7 +19,18 @@ if(isset($_POST['add'])){
         header("Location: ". $_SERVER['HTTP_REFERER']);
     }
 }
-//Read
+
+//Read user
 $sql = $pdo->prepare("SELECT * FROM  users_1");
 $sql->execute();
 $result = $sql->fetchAll(PDO::FETCH_OBJ);
+
+//Edit user
+if(isset($_POST['edit'])){
+    $sql = ("UPDATE `users_1` SET `name`=?,`email`=? WHERE ID=?");
+    $query = $pdo->prepare($sql);
+    $query->execute([$name, $email, $get_id]);
+    if($query){
+        header("Location: ". $_SERVER['HTTP_REFERER']);
+    }
+}

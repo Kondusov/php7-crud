@@ -66,7 +66,7 @@
     <link href="//getbootstrap.com/docs/5.2/examples/grid/grid.css" rel="stylesheet">
   </head>
   <body class="py-4">
-<main>
+  <main>
     <div class="container">
     <h1>Users list</h1>
     <!-- Button trigger modal -->
@@ -75,38 +75,57 @@
         </button>
     <!-- end Button trigger modal -->
     <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">name</th>
-      <th scope="col">email</th>
-      <th scope="col">action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($result as $res){ ?>
-    <tr>
-      <th scope="row"><?php echo $res->id ?></th>
-      <td><?php echo $res->name ?></td>
-      <td><?php echo $res->email ?></td>
-      <td><a href="" class="btn-btn-success">Edit</a>
-      <a href="" class="btn-btn-success">Delete</a>
-    </td>
-    </tr>
-    <?php } ?>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">name</th>
+          <th scope="col">email</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($result as $res){ ?>
+        <tr>
+          <th scope="row"><?php echo $res->id ?></th>
+          <td><?php echo $res->name ?></td>
+          <td><?php echo $res->email ?></td>
+          <td>
+            <a href="?id=<?php echo $res->id ?>" class="btn-btn-success" data-bs-toggle="modal" data-bs-target="#edit<?php echo $res->id ?>" >Edit</a>
+            <a href="" class="btn-btn-success">Delete</a>
+          </td>
+        </tr>
+        <!-- Modal Edit -->
+        <div class="modal fade" id="edit<?php echo $res->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit post</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="?id=<?php echo $res->id ?>">
+                    <div class="form-group">
+                        <small>Name</small>
+                        <input type="text" class="form-control" name="name" value="<?php echo $res->name ?>">
+                    </div>
+                    <div class="form-group">
+                        <small>Email</small>
+                        <input type="text" class="form-control" name="email" value="<?php echo $res->email ?>">
+                    </div>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end Modal Edit -->
+        <?php } ?>
+      </tbody>
+    </table>
     </div>
 </main>
 
@@ -140,6 +159,7 @@
   </div>
 </div>
 <!-- end Modal create -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 </body>
